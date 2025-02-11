@@ -1,6 +1,6 @@
-# ImageKit Video Shop
+# ReelX : ImageKit Video Shop
 
-A modern Next.js application for managing and selling video content using ImageKit integration. This project provides a full-featured platform with user authentication, video upload capabilities, and payment processing using Razorpay.
+Reelx is a modern Next.js application for managing and selling video content using ImageKit integration. This project provides a full-featured platform with user authentication, video upload capabilities, and payment processing using Razorpay.
 
 ## Features
 
@@ -35,21 +35,25 @@ A modern Next.js application for managing and selling video content using ImageK
 ## Getting Started
 
 1. Clone the repository:
+
 ```bash
 git clone <repository-url>
 cd imagekit-video-main
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Configure environment variables:
+
    - Copy `.env.example` to `.env`
    - Fill in the required environment variables
 
 4. Run the development server:
+
 ```bash
 npm run dev
 ```
@@ -110,12 +114,4 @@ SMTP_PASS=
 
 ## Contributing
 
-NO CONTRIBUTING PLEASE!
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Support
-
-For support, watch youtube video
+NO CONTRIBUTING PLEASE AS IT WAS CREATED FOR LEARNING PURPOSE!
