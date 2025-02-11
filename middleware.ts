@@ -1,3 +1,4 @@
+import { config } from "dotenv";
 import { withAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
 
@@ -10,7 +11,8 @@ export default withAuth(
       authorized: ({ token, req }) => {
         const { pathname } = req.nextUrl;
 
-        // Allow auth-related routes
+        //allow auth related routes
+
         if (
           pathname.startsWith("/api/auth") ||
           pathname === "/login" ||

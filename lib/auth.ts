@@ -1,8 +1,8 @@
-import { NextAuthOptions } from "next-auth";
+import { Awaitable, NextAuthOptions, RequestInternal } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import bcrypt from "bcryptjs";
 import { connectToDatabase } from "./db";
-import UserModel from "../models/User";
+import User from "@/models/User";
+import bcrypt from "bcryptjs";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -14,37 +14,33 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error("Missing email or password");
+          throw new Error("Missing Email and password!");
         }
-
         try {
           await connectToDatabase();
-          const user = await UserModel.findOne({ email: credentials.email });
+          const user = await User.findOne({ email: credentials.email });
 
           if (!user) {
-            throw new Error("No user found with this email");
+            throw new Error("No user found!");
           }
-
           const isValid = await bcrypt.compare(
             credentials.password,
             user.password
           );
 
           if (!isValid) {
-            throw new Error("Invalid password");
+            throw new Error("Invalid password!");
           }
 
-          return {
-            id: user._id.toString(),
-            email: user.email,
-          };
+          return { id: user._id.toString(), email: user.email };
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (error) {
-          console.error("Auth error:", error);
           throw error;
         }
       },
     }),
   ],
+
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
@@ -56,6 +52,7 @@ export const authOptions: NextAuthOptions = {
       if (session.user) {
         session.user.id = token.id as string;
       }
+
       return session;
     },
   },
